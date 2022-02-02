@@ -22,6 +22,6 @@ public class sniper : gun
     public override void fire()
     {
         Instantiate(sniperBullet, transform.position, transform.rotation);
-        sniperBullet.GetComponent<sniperBullet>().onActive();
+        
     }
 }

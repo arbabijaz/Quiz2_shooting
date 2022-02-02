@@ -5,7 +5,7 @@ using UnityEngine;
 public class equipped : MonoBehaviour
 {
     public GameObject equip;
-    public GameObject gun;
+    public GameObject[] gun;
     private GameObject assignGun;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,21 @@ public class equipped : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            assignGun= Instantiate(gun, equip.transform.position, equip.transform.rotation,transform.parent);
+            //Destroy(assignGun.gameObject);
+            assignGun= Instantiate(gun[0], equip.transform.position, equip.transform.rotation,transform.parent);
+            assignGun.transform.parent = equip.transform;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            //Destroy(assignGun.gameObject);
+            assignGun = Instantiate(gun[1], equip.transform.position, equip.transform.rotation, transform.parent);
+            assignGun.transform.parent = equip.transform;
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            //Destroy(assignGun.gameObject);
+            assignGun = Instantiate(gun[2], equip.transform.position, equip.transform.rotation, transform.parent);
+            assignGun.transform.parent = equip.transform;
         }
     }
 }

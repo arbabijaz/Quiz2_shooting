@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class sniperBullet : MonoBehaviour
+public class shotgunBullet : MonoBehaviour
 {
-    public float speed=100;
+    public float speed = 100;
     private Rigidbody bulletRB;
-    public float hitForce = 20;
-    float damage = 120;
+    public float hitForce = 150;
+    float damage = 80;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +18,7 @@ public class sniperBullet : MonoBehaviour
     void Update()
     {
         //bulletRB.AddForce(Vector3.forward);
-        transform.Translate(Vector3.forward  * speed * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
     void bulletdamage()
     {
@@ -26,29 +26,19 @@ public class sniperBullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        
+
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<enemyController>().getDamage(damage);
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * hitForce, ForceMode.Impulse);
             Destroy(gameObject);
         }
-        if (collision.gameObject.CompareTag("wall")) 
+        if (collision.gameObject.CompareTag("wall"))
         {
             Destroy(gameObject);                           //destroing Bullets
         }
 
-        
-    }
-    public void onActive()
-    {
-        //gameObject.SetActive(true);                    //coroutine to destroy bullets automaticly showing error inactive 
-        //StartCoroutine(destroyBullet());
-    }
-    IEnumerator destroyBullet()
-    {
-        yield return new WaitForSeconds(3);
-        Destroy(gameObject);
 
     }
+    
 }
